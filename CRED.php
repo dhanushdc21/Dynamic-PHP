@@ -56,7 +56,20 @@
                 {
                     echo "<p>Data deletion Unsuccessfull.</p>";
                 }break;
-    
+            case "Show":
+                $selectQuery = "SELECT * FROM college";
+                $result = mysqli_query($connection, $selectQuery);
+                if ($result && mysqli_num_rows($result) > 0) {
+                    echo "<table>";
+                    echo "<tr><th>Name</th><th>Phone Number</th></tr>";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr><td>" . $row['name'] . "</td><td>" . $row['p_no'] . "</td></tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "<p>No data found.</p>";
+                }
+                break;
             default:
                 echo "<p>Unknown action.</p>";
                 break;
